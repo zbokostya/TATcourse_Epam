@@ -1,37 +1,26 @@
-package Planes;
+package model;
 
 import java.util.Objects;
 
-public class PassengerPlane extends Plane{
-
-    //=================FIELDS=================
+public class PassengerPlane extends Plane {
     private int passengersCapacity;
 
-    //=================CONSTRUCTORS=================
     public PassengerPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, int passengersCapacity) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
         this.passengersCapacity = passengersCapacity;
     }
 
-
-    //=================METHODS=================
     public int getPassengersCapacity() {
         return passengersCapacity;
     }
 
     @Override
     public String toString() {
-        return super.toString().replace("}",
+        String str = super.toString();
+        return str.substring(0, str.length() - 2) +
                 ", passengersCapacity=" + passengersCapacity +
-                '}');
+                '}';
     }
-
-//    @Override
-//    public String toString() {
-//        return super.toString().replace("}",
-//                ", passengersCapacity=" + passengersCapacity +
-//                        '}');
-//    }
 
     @Override
     public boolean equals(Object o) {

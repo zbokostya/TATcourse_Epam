@@ -1,27 +1,27 @@
-package Planes;
+package model;
 
-import models.MilitaryType;
+import type.MilitaryPlaneType;
 
 import java.util.Objects;
 
-public class MilitaryPlane extends Plane{
+public class MilitaryPlane extends Plane {
+    private MilitaryPlaneType type;
 
-    private MilitaryType type;
-
-    public MilitaryPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, MilitaryType type) {
+    public MilitaryPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, MilitaryPlaneType type) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
         this.type = type;
     }
 
-    public MilitaryType getType() {
+    public MilitaryPlaneType getType() {
         return type;
     }
 
     @Override
     public String toString() {
-        return super.toString().replace("}",
+        String str = super.toString();
+        return str.substring(0, str.length() - 2) +
                 ", type=" + type +
-                '}');
+                '}';
     }
 
     @Override
