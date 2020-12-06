@@ -1,0 +1,2 @@
+type=record name=name1 duration=200 artist=artist1 INSTRUMENTS=guitar,piano
+type=musical name=name2 duration=300 artist=artist2 AUDIOSTYLE=jazz

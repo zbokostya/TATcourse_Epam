@@ -1,7 +1,5 @@
 package collections.read;
 
-import org.apache.logging.log4j.Level;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -26,5 +24,10 @@ public class CompositionRead {
         } catch (FileNotFoundException e) {
             throw new RuntimeException("file not found");
         }
+    }
+
+    public String getAbsolutePath(String rootPath) {
+        File file = new File(rootPath);
+        return file.getAbsolutePath();
     }
 }
