@@ -4,11 +4,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class TestAddToCart {
     WebDriver driver;
@@ -42,6 +41,13 @@ public class TestAddToCart {
 
         WebElement goToBucket = waitForElementLocatedBy(driver, By.className("basket-field__icon"));
         goToBucket.click();
+
+        WebElement actual = waitForElementLocatedBy(driver, By.xpath("//div[@class='summ-count-all row-table']/div[@class='col-table value']"));
+
+        String expected = "1 шт";
+        String actualString = actual.getText();
+
+        Assert.assertEquals(expected, actualString);
     }
 
     private static WebElement waitForElementLocatedBy(WebDriver webDriver, By by) {
