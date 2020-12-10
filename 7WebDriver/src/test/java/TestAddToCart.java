@@ -1,7 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -9,22 +10,38 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class TestAddToCart {
     WebDriver driver;
 
     @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
+    public void setUp() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "chrome");
+        capabilities.setCapability("browserVersion", "87.0");
+        Map<String, Object> cnt = new HashMap<String, Object>();
+        cnt.put("enableVNC", true);
+        cnt.put("enableVideo", false);
+        capabilities.setCapability("selenoid:options", cnt);
+        driver = new RemoteWebDriver(
+                URI.create("http://51.15.53.117:8080/wd/hub").toURL(),
+                capabilities
+        );
         driver.get("https://e-zoo.by/");
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void tearDown() {
+//        driver.quit();
+//    }
 
     @Test
-    public void testCreatePaste() throws InterruptedException {
+    public void testCreatePaste() {
         if (driver.findElements(By.xpath("//div[@id='your_city-window']")).size() != 0) {
             WebElement cityButton = waitForElementLocatedBy(driver, By.xpath("//div[@id='your_city-window']/form[@class='js-validation-form tex-center center']/button[@class='btn'][1]"));
             cityButton.click();
@@ -36,7 +53,7 @@ public class TestAddToCart {
         WebElement searchButton = waitForElementLocatedBy(driver, By.xpath("//button[@class='search-field__btn']"));
         searchButton.click();
 
-        WebElement addToBucket = waitForElementLocatedBy(driver, By.xpath("//div[@class='catalog__item js-catalog-item'][2]/div[@class='cart js-cart']/div[@class='cart__inner']/div[@class='product__variant-table product__variant-table-small']/form[@class='product__variant js-cart-basket-submit']/div[@class='product__variant-cell product__variant-submit']/button[@class='btn btn_small basket-btn product__basket-btn js-cart-basket-btn ']"));
+        WebElement addToBucket = waitForElementLocatedBy(driver, By.cssSelector(".product__variant-submit"));
         addToBucket.click();
 
         WebElement goToBucket = waitForElementLocatedBy(driver, By.className("basket-field__icon"));
