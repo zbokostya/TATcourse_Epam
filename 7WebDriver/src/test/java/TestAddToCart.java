@@ -1,3 +1,7 @@
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -5,26 +9,21 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class TestAddToCart {
     WebDriver driver;
 
-    @BeforeMethod
+    @Before
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", "chrome");
         capabilities.setCapability("browserVersion", "87.0");
-        Map<String, Object> cnt = new HashMap<String, Object>();
+        Map<String, Object> cnt = new HashMap<>();
         cnt.put("enableVNC", true);
         cnt.put("enableVideo", false);
         capabilities.setCapability("selenoid:options", cnt);
@@ -35,10 +34,10 @@ public class TestAddToCart {
         driver.get("https://e-zoo.by/");
     }
 
-//    @AfterMethod
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @After
+    public void tearDown() {
+        driver.close();
+    }
 
     @Test
     public void testCreatePaste() {
@@ -65,6 +64,7 @@ public class TestAddToCart {
         String actualString = actual.getText();
 
         Assert.assertEquals(expected, actualString);
+
     }
 
     private static WebElement waitForElementLocatedBy(WebDriver webDriver, By by) {
