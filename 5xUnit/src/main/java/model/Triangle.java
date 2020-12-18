@@ -69,23 +69,25 @@ public class Triangle {
         private double c = 0;
 
         public Builder setTriangleASides(double a) {
+            if (a < 0) throw new TriangleException("Sides can't be negative!");
             this.a = a;
             return this;
         }
 
         public Builder setTriangleBSides(double b) {
+            if (b < 0) throw new TriangleException("Sides can't be negative!");
             this.b = b;
             return this;
         }
 
         public Builder setTriangleCSides(double c) {
+            if (c < 0) throw new TriangleException("Sides can't be negative!");
             this.c = c;
             return this;
         }
 
-        public Triangle build() throws TriangleException {
+        public Triangle build() {
             Triangle triangle = new Triangle(this);
-            if(!triangle.isTriangle()) throw new TriangleException("Not a triangle");
             return triangle;
         }
     }
