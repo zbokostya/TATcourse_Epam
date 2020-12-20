@@ -2,13 +2,9 @@
 
 <suite name="All tests" verbose="1" >
     <test name="EZooTest">
-        <packages>
-            <package name="model.test.EZooTest" />
-        </packages>
-    </test>
-    <test name="UserTest">
-        <packages>
-            <package name="model.test.UserAccessTests" />
-        </packages>
+       <classes>
+           <class name="model.test.UserAccessTests"/>
+           <class name="model.test.EZooTest"/>
+       </classes>
     </test>
 </suite>

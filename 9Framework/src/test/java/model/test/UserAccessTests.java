@@ -3,6 +3,7 @@ package model.test;
 import model.model.User;
 import model.page.HomePage;
 import model.service.UserCreator;
+import model.util.StringParserUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -45,11 +46,11 @@ public class UserAccessTests extends CommonConditions {
 
     @Test
     public void changeCity() {
-        String city = new HomePage(driver)
+        String city = StringParserUtil.parseText(new HomePage(driver)
                 .openChangeCityWindow()
                 .selectCity("Поставы")
                 .acceptCity()
-                .getCity();
+                .getCity());
         Assert.assertEquals(city, "Поставы");
     }
 
