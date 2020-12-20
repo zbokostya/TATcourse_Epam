@@ -33,7 +33,7 @@ public class DriverSingleton {
                 URI.create("http://51.15.53.117:8080/wd/hub").toURL(),
                 capabilities
         );
-        logger.info("driver started");
+        logger.info("get driver");
         return driver;
     }
 
