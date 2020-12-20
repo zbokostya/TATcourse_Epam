@@ -2,6 +2,7 @@ package model.driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -32,7 +33,7 @@ public class DriverSingleton {
                 URI.create("http://51.15.53.117:8080/wd/hub").toURL(),
                 capabilities
         );
-        logger.info(driver);
+        logger.info("driver started");
         return driver;
     }
 

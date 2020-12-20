@@ -1,12 +1,10 @@
 package model.test;
 
-import model.driver.DriverSingleton;
 import model.page.FilterPage;
 import model.page.HomePage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class EZooTest extends CommonConditions {
                 .addItemToCart()
                 .openCart()
                 .getCartCountMessage();
-        Assert.assertEquals("1 шт", actualCartValue);
+        Assert.assertEquals(actualCartValue, "1 шт");
     }
 
     @Test
@@ -40,16 +38,11 @@ public class EZooTest extends CommonConditions {
         List<WebElement> items = new FilterPage(driver)
                 .openPage()
                 .selectFilters(filters)
-                .selectSizeOption()
+                .selectSizeOption("Для всех пород", "250")
                 .openFilteredItemsPage()
                 .getListItems();
         Assert.assertFalse(items.isEmpty());
     }
 
 
-
-    @After
-    public void tearDown() {
-        DriverSingleton.closeDriver();
-    }
 }

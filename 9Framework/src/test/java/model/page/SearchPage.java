@@ -1,10 +1,10 @@
 package model.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -33,8 +33,8 @@ public class SearchPage extends AbstractPage {
     }
 
     public List<WebElement> getListElements() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECOND);
-        return driver.findElements(By.className("catalog__item js-catalog-item"));
+        WebDriverWait wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECOND);
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='catalog__item js-catalog-item']")));
     }
 
     public CartPage openCart() {

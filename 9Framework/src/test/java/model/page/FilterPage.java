@@ -27,10 +27,10 @@ public class FilterPage extends AbstractPage {
         return this;
     }
 
-    public FilterPage selectSizeOption() {
-        WebElement selectElement = driver.findElement(By.name("250"));
+    public FilterPage selectSizeOption(String breed, String size) {
+        WebElement selectElement = driver.findElement(By.name(size));
         Select select = new Select(selectElement);
-        select.selectByValue("Для всех пород");
+        select.selectByValue(breed);
         return this;
     }
 
