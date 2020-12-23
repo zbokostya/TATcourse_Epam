@@ -31,9 +31,6 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//a[text()='Регистрация']")
     private WebElement registerButton;
 
-    @FindBy(className = " a_js-popup-link js-popup-link")
-    private WebElement cityWindow;
-
     public HomePage(RemoteWebDriver driver) {
         super(driver);
     }
@@ -47,8 +44,10 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage openChangeCityWindow() {
-        new WebDriverWait(driver, 10);
-        cityWindow.click();
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(
+                        By.xpath("//a[@href='#regions-window']")
+                )).click();
         return this;
     }
 
@@ -97,11 +96,11 @@ public class HomePage extends AbstractPage {
     }
 
     public ProfilePage login(User user) {
-        return new HomePage(driver)
-                .openPage()
+        return openPage()
                 .openSignInPage()
                 .signIn(user)
                 .openProfilePage();
+
     }
 
     public RegisterPage openRegisterPage() {

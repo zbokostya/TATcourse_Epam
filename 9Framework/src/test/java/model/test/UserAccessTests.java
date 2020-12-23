@@ -14,6 +14,7 @@ public class UserAccessTests extends CommonConditions {
     public void signIn() {
         User testUser = UserCreator.withCredentialsFromProperty();
         String loggedInUserEmail = new HomePage(driver)
+                .openPage()
                 .login(testUser)
                 .getUserEmail();
         Assert.assertEquals(loggedInUserEmail, testUser.getEmail());
@@ -23,10 +24,12 @@ public class UserAccessTests extends CommonConditions {
     @Test
     public void register() {
         User testUser = UserCreator.withRandom();
+        System.out.println(testUser.toString());
         String loggedInUserEmail = new HomePage(driver)
                 .openPage()
                 .openRegisterPage()
-                .register(testUser)
+                .inputRegisterInForm(testUser)
+                .register()
                 .login(testUser)
                 .getUserEmail();
         Assert.assertEquals(loggedInUserEmail, testUser.getEmail());
@@ -36,22 +39,25 @@ public class UserAccessTests extends CommonConditions {
     public void changeAddress() {
         User testUser = UserCreator.withCredentialsFromProperty();
         String address = new HomePage(driver)
+                .openPage()
                 .login(testUser)
                 .openChangeDataWindow()
-                .changeAddress("пр.Рокосовского 100-12")
+                .changeAddress(testUser.getAddress())
                 .saveChanges()
                 .getAddress();
-        Assert.assertEquals(address, "пр.Рокосовского 100-12");
+        Assert.assertEquals(address, testUser.getAddress());
     }
 
     @Test
     public void changeCity() {
-        String city = StringParserUtil.parseText(new HomePage(driver)
+        String city = new HomePage(driver)
+                .openPage()
                 .openChangeCityWindow()
                 .selectCity("Поставы")
                 .acceptCity()
-                .getCity());
-        Assert.assertEquals(city, "Поставы");
+                .getCity();
+        String actual = StringParserUtil.parseText(city);
+        Assert.assertEquals(actual, "Поставы");
     }
 
 

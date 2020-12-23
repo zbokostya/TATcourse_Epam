@@ -3,13 +3,13 @@ package model.util;
 import java.util.Random;
 
 public class StringUtil {
-    private static final String ALFA = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
-    private static Random random = new Random();
+    private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrtsuvwxyz";
+    private static final Random random = new Random();
 
     public static String randomString(int length) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
-            sb.append(ALFA.charAt(random.nextInt(ALFA.length())));
+            sb.append(LETTERS.charAt(random.nextInt(LETTERS.length())));
         }
         return sb.toString();
     }
@@ -18,9 +18,9 @@ public class StringUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(randomString(8))
                 .append('@')
-                .append(randomString(3))
+                .append(randomString(4))
                 .append('.')
-                .append(randomString(3));
+                .append(randomString(2));
         return sb.toString();
     }
 

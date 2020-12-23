@@ -16,16 +16,14 @@ public class RegisterPage extends AbstractPage {
     @FindBy(xpath = "//input[@type='password']")
     private WebElement passwordField;
 
-    @FindBy(xpath = "//button[@type='submit' and text()='Вход']")
+    @FindBy(xpath = "//button[text()='Регистрация']")
     private WebElement registerButton;
 
     @FindBy(className = "js-styler js-filter-brands-checkbox error")
     private WebElement checkBox;
 
 
-    public HomePage register(User user) {
-        inputRegisterInForm(user);
-        checkBox.click();
+    public HomePage register() {
         registerButton.click();
         return new HomePage(driver);
     }

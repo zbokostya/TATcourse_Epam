@@ -6,12 +6,14 @@ public class User {
     private String email;
     private String password;
     private String name;
+    private String address;
 
 
-    public User( String name, String email, String password) {
+    public User( String name, String email, String password, String address) {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.address = address;
     }
 
     public String getEmail() {
@@ -38,18 +40,21 @@ public class User {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(name, user.name);
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(email, password, name);
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
