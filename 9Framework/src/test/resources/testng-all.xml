@@ -3,12 +3,7 @@
 <suite name="All tests" verbose="1">
     <test name="All tests">
         <packages>
-            <package name="model.test.EZooTest"/>
-        </packages>
-    </test>
-    <test name="UserTest">
-        <packages>
-            <package name="model.test.UserAccessTests"/>
+            <package name="model.test"/>
         </packages>
     </test>
 </suite>
