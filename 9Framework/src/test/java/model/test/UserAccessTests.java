@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 
 public class UserAccessTests extends CommonConditions {
 
-    public static final String TESTDATA_SEARCH_CITY = "testdata.search.city";
 
     @Test
     public void signIn() {
@@ -56,11 +55,11 @@ public class UserAccessTests extends CommonConditions {
         String city = new HomePage(driver)
                 .openPage()
                 .openChangeCityWindow()
-                .selectCity(TestDataReader.getTestData(TESTDATA_SEARCH_CITY))
+                .selectCity("Поставы")
                 .acceptCity()
                 .getCity();
         String actual = StringParserUtil.parseText(city);
-        Assert.assertEquals(actual, TestDataReader.getTestData(TESTDATA_SEARCH_CITY));
+        Assert.assertEquals(actual, "Поставы");
     }
 
 

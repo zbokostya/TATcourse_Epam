@@ -11,18 +11,11 @@ import java.util.List;
 
 public class EZooTest extends CommonConditions {
 
-    public static final String TESTDATA_FILTER_BREED = "testdata.filter.breed";
-    public static final String TESTDATA_SEARCH_TEXT = "testdata.search.text";
-    public static final String TESTDATA_FILTER_SIZE = "testdata.filter.size";
-    public static final String TESTDATA_FILTER_COMPANY1 = "testdata.filter.company1";
-    public static final String TESTDATA_FILTER_COMPANY2 = "testdata.filter.company2";
-
-
     @Test
     public void addToCartTest() {
         String actualCartValue = new HomePage(driver)
                 .openPage()
-                .searchInputText(TestDataReader.getTestData(TESTDATA_SEARCH_TEXT))
+                .searchInputText("Brit care")
                 .openSearchPage()
                 .addItemToCart()
                 .openCart()
@@ -34,7 +27,7 @@ public class EZooTest extends CommonConditions {
     public void searchProductTest() {
         List<WebElement> actualSearchElements = new HomePage(driver)
                 .openPage()
-                .searchInputText(TestDataReader.getTestData(TESTDATA_SEARCH_TEXT))
+                .searchInputText("Brit care")
                 .openSearchPage()
                 .getListElements();
         Assert.assertFalse(actualSearchElements.isEmpty());
@@ -45,10 +38,9 @@ public class EZooTest extends CommonConditions {
         List<WebElement> items = new FilterPage(driver)
                 .openPage()
                 .selectFilters(new String[]{
-                        TestDataReader.getTestData(TESTDATA_FILTER_COMPANY1),
-                        TestDataReader.getTestData(TESTDATA_FILTER_COMPANY2)})
-                .selectSizeOption(TestDataReader.getTestData(TESTDATA_FILTER_BREED),
-                        TestDataReader.getTestData(TESTDATA_FILTER_SIZE))
+                        "Acana"
+                        , "Orijen"})
+                .selectSizeOption("Для всех пород", "250")
                 .openFilteredItemsPage()
                 .getListItems();
         Assert.assertFalse(items.isEmpty());
