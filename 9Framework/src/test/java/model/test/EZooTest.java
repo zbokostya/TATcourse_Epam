@@ -1,6 +1,5 @@
 package model.test;
 
-import model.page.CatsFoodPage;
 import model.page.FilterPage;
 import model.page.HomePage;
 import model.service.TestDataReader;
