@@ -15,7 +15,7 @@ public class ItemsPage extends AbstractPage{
 
     @Override
     protected AbstractPage openPage() {
-        throw new RuntimeException("");
+        throw new RuntimeException("This page can't be open without parameters");
     }
 
     public List<WebElement> getListItems(){

@@ -2,6 +2,7 @@ package model.test;
 
 import model.model.User;
 import model.page.HomePage;
+import model.service.TestDataReader;
 import model.service.UserCreator;
 import model.util.StringParserUtil;
 import org.testng.Assert;
@@ -9,6 +10,8 @@ import org.testng.annotations.Test;
 
 
 public class UserAccessTests extends CommonConditions {
+
+    public static final String TESTDATA_SEARCH_CITY = "testdata.search.city";
 
     @Test
     public void signIn() {
@@ -53,11 +56,11 @@ public class UserAccessTests extends CommonConditions {
         String city = new HomePage(driver)
                 .openPage()
                 .openChangeCityWindow()
-                .selectCity("Поставы")
+                .selectCity(TestDataReader.getTestData(TESTDATA_SEARCH_CITY))
                 .acceptCity()
                 .getCity();
         String actual = StringParserUtil.parseText(city);
-        Assert.assertEquals(actual, "Поставы");
+        Assert.assertEquals(actual, TestDataReader.getTestData(TESTDATA_SEARCH_CITY));
     }
 
 

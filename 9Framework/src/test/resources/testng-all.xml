@@ -1,9 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="All tests" verbose="1" >
-    <test name="All tests"   >
+<suite name="All tests" verbose="1">
+    <test name="All tests">
         <packages>
-            <package name="model.test" />
+            <package name="model.test.EZooTest"/>
+        </packages>
+    </test>
+    <test name="UserTest">
+        <packages>
+            <package name="model.test.UserAccessTests"/>
         </packages>
     </test>
 </suite>
