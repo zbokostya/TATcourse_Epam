@@ -31,6 +31,8 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//a[text()='Регистрация']")
     private WebElement registerButton;
 
+    private final String citySelectorXpath = "//input[@value='cityChanger']";
+
     public HomePage(RemoteWebDriver driver) {
         super(driver);
     }
@@ -39,7 +41,7 @@ public class HomePage extends AbstractPage {
     public HomePage openPage() {
         driver.navigate().to(HOME_PAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECOND);
-        logger.info("Main page opened");
+        logger.info("Home page opened");
         return this;
     }
 
@@ -53,13 +55,13 @@ public class HomePage extends AbstractPage {
 
     public HomePage searchInputText(String text) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECOND);
-        searchField.sendKeys("Brit care");
+        searchField.sendKeys(text);
         return this;
     }
 
     public HomePage selectCity(String city) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECOND)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@value='" + city + "']")))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(citySelectorXpath.replaceAll("cityChanger", city))))
                 .click();
         return this;
     }

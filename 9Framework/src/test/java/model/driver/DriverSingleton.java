@@ -2,7 +2,6 @@ package model.driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -22,17 +21,20 @@ public class DriverSingleton {
     }
 
     public static RemoteWebDriver getDriver() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "chrome");
-        capabilities.setCapability("browserVersion", "87.0");
-        Map<String, Object> cnt = new HashMap<>();
-        cnt.put("enableVNC", true);
-        cnt.put("enableVideo", false);
-        capabilities.setCapability("selenoid:options", cnt);
-        driver = new RemoteWebDriver(
-                URI.create("http://51.15.53.117:8080/wd/hub").toURL(),
-                capabilities
-        );
+        if (driver == null) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("browserName", "chrome");
+            capabilities.setCapability("browserVersion", "87.0");
+            Map<String, Object> cnt = new HashMap<>();
+            cnt.put("enableVNC", true);
+            cnt.put("enableVideo", false);
+            capabilities.setCapability("selenoid:options", cnt);
+            driver = new RemoteWebDriver(
+                    URI.create("http://51.15.53.117:8080/wd/hub").toURL(),
+                    capabilities
+            );
+           logger.info("create driver");
+        }
         logger.info("get driver");
         return driver;
     }

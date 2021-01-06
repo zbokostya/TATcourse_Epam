@@ -27,18 +27,15 @@ public class SearchPage extends AbstractPage {
     }
 
     public SearchPage addItemToCart() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECOND);
         addItemToCart.click();
         return this;
     }
 
     public List<WebElement> getListElements() {
-        WebDriverWait wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECOND);
-        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='catalog__item js-catalog-item']")));
+        return new WebDriverWait(driver, WAIT_TIMEOUT_SECOND).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='catalog__item js-catalog-item']")));
     }
 
     public CartPage openCart() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECOND);
         openBucketButton.click();
         return new CartPage(driver);
     }

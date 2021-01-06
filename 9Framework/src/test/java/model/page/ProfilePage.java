@@ -37,7 +37,6 @@ public class ProfilePage extends AbstractPage {
     }
 
     public ProfilePage changeAddress(String address) {
-        new WebDriverWait(driver, 10);
         addressField.clear();
         addressField.sendKeys(address);
         return this;
@@ -52,7 +51,6 @@ public class ProfilePage extends AbstractPage {
     }
 
     public String getAddress() {
-        new WebDriverWait(driver, 10);
         return address.getAttribute("value");
     }
 
